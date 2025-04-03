@@ -1,7 +1,7 @@
 import streamlit as st
 from src.pages.home import show_home
 from src.pages.prediction import show_prediction
-#from src.pages.analysis import show_analysis
+from src.pages.analysis import show_analysis
 
 # App configuration
 st.set_page_config(
@@ -36,7 +36,5 @@ if st.session_state.page == 'home':
     show_home()
 elif st.session_state.page == 'prediction':
     show_prediction()
-"""
 elif st.session_state.page == 'analysis':
     show_analysis()
-    """

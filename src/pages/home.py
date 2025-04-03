@@ -1,67 +1,70 @@
 import streamlit as st
-from src.utils.helpers import get_model_metrics
-from src.components.visualizations import plot_metrics_comparison
 
 def show_home():
     """Display the home page with general information and metrics"""
     
-    # Title and introduction
+     # Title and Subtitle
     st.title("🏭 Injection Molding Quality Dashboard")
-    st.caption("### Most Accurate Model for Predicting Quality Class is Decision Tree")
-    
-    # Introduction
+    st.caption("Developed by: 4127677 | Final Year AI Coursework")
+
     st.markdown("""
-    This dashboard allows you to predict the quality class of injection molded parts based on process parameters.
-    
-    Use the sidebar navigation to explore different sections of the dashboard:
-    - **Make Prediction**: Enter process parameters to predict quality class
-    - **Model Analysis**: Explore model performance metrics and visualizations
+    This interactive dashboard allows you to predict the **quality class** of plastic injection molded parts using machine learning models trained on process parameters.  
+    It supports multiple classifiers, live predictions, model comparisons, and performance visualizations.
     """)
-    
-    # Display key features
-    st.subheader("📋 Key Features")
+
+    # === Project Overview ===
+    st.subheader("📌 Project Overview")
+    st.markdown("""
+    Plastic injection molding is a key manufacturing technique where monitoring process quality is critical.  
+    This tool helps operators and engineers classify production parts into:
+    - **Waste**
+    - **Target**
+    - **Acceptable**
+    - **Inefficient**
+
+    Based on inputs like temperature, pressure, timing, and torque, this ML-powered system recommends quality class in real-time.
+    """)
+
+    # === Data Description ===
+    st.subheader("🧪 Data Features Used")
+    st.markdown("""
+    The following process parameters are used to predict part quality:
+    - Cycle time, Mold temperature, Melt temperature
+    - Injection and back pressure
+    - Torque (mean/peak), Closing and Clamping force
+    - Shot volume, Time to fill, Screw position
+    """)
+
+    # === Navigation Guide ===
+    st.subheader("🧭 How to Use This Dashboard")
+    st.markdown("""
+    Use the sidebar to access the main sections:
+    - **Make Prediction**: Input parameters and get live quality class
+    - **Model Analysis**: View feature importance, confusion matrix, ROC curves
+    - **Metrics Summary**: Compare performance of models
+    - **Export Results**: Download predictions and visual outputs
+    """)
+
+    # === Key Features ===
+    st.subheader("🚀 Key Features")
     col1, col2 = st.columns(2)
-    
+
     with col1:
         st.markdown("""
-        - **Quality Prediction**: Predict the quality class of injection molded parts
-        - **Multiple Models**: Compare performance of different ML models
-        - **Interactive Parameters**: Adjust process parameters in real-time
+        - 🧠 Supports multiple ML models (RF, DT, SVM, AdaBoost)
+        - 🛠️ Input process parameters via sidebar
+        - 🔐 Optional login system with Streamlit Authenticator
         """)
-    
+
     with col2:
         st.markdown("""
-        - **Visualization**: View feature importance and model performance
-        - **Export Results**: Download prediction results as CSV
-        - **Model Metrics**: Compare accuracy, F1-score, and ROC-AUC
+        - 📊 View confusion matrix, ROC curve, and feature importance
+        - 📥 Export results as CSV
+        - 📈 Live prediction and result explanation
         """)
     
-    # Display model comparison
-    st.subheader("📊 Model Performance Overview")
-    metrics_df = get_model_metrics()
-    
-    col1, col2 = st.columns([2, 3])
-    
-    with col1:
-        st.dataframe(metrics_df.set_index("Model").style.highlight_max(axis=0))
-    
-    with col2:
-        fig = plot_metrics_comparison(metrics_df)
-        st.pyplot(fig)
-    
-    # Quality class explanation
-    st.subheader("🏷️ Quality Classes Explained")
-    
-    quality_classes = {
-        "Waste": "Parts that fail quality control and cannot be used.",
-        "Target": "Ideal parts that meet all quality requirements perfectly.",
-        "Acceptable": "Parts that meet minimum quality requirements and can be used.",
-        "Inefficient": "Parts that are usable but produced with suboptimal efficiency."
-    }
-    
-    for class_name, description in quality_classes.items():
-        st.markdown(f"**{class_name}**: {description}")
     
     # Footer
+     # === Footer ===
     st.markdown("---")
-    st.markdown("Developed by: 4127677")
+    st.info("This dashboard is part of the Artificial Intelligence Coursework at London South Bank University. Built using Streamlit.")

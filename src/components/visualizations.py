@@ -10,11 +10,16 @@ from src.utils.helpers import CLASS_LABELS, FEATURE_NAMES
 
 def plot_feature_importance(model):
     """Plot feature importance for the selected model"""
-    if not hasattr(model, 'named_steps') or not hasattr(model.named_steps['clf'], 'feature_importances_'):
+    # Check if model is a pipeline with feature_importances_
+    if hasattr(model, 'named_steps') and hasattr(model.named_steps.get('clf', None), 'feature_importances_'):
+        importances = model.named_steps['clf'].feature_importances_
+    # Check if model directly has feature_importances_
+    elif hasattr(model, 'feature_importances_'):
+        importances = model.feature_importances_
+    else:
         st.warning("Selected model doesn't support feature importance visualization")
-        return
+        return None
     
-    importances = model.named_steps['clf'].feature_importances_
     importance_df = pd.DataFrame({"Feature": FEATURE_NAMES, "Importance": importances})
     importance_df = importance_df.sort_values(by="Importance", ascending=False)
 

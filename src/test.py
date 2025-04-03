@@ -19,7 +19,7 @@ best_models = {
     "Random Forest": joblib.load("models/random_forest_model.pkl"),
     "Decision Tree": joblib.load("models/dt_model.pkl"),
     "SVM": joblib.load("models/svm_model.pkl"),
-    #"ANN": joblib.load("ann_model.pkl"),
+    "ANN": joblib.load("ann_model.pkl"),
     "AdaBoost": joblib.load("models/ada_model.pkl")
 }
 

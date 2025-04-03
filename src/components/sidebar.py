@@ -57,5 +57,5 @@ def model_selector():
     Create a model selector dropdown
     Returns the selected model name
     """
-    models = ["Random Forest", "Decision Tree", "SVM", "AdaBoost"]
+    models = ["Random Forest", "Decision Tree", "SVM", "ANN", "AdaBoost"]
     return st.selectbox("Choose Model", models)
