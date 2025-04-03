@@ -1,0 +1,12 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "A Streamlit-based interactive dashboard to predict the **quality class** of injection-molded parts using machine learning models.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
